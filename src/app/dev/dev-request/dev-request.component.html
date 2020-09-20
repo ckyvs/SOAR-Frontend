@@ -1,0 +1,15 @@
+<app-menu></app-menu>
+<div class="container mt-3" *ngIf="request && request.inventories">
+    <h3>Request {{id}}</h3>
+    <table class="table mt-3">
+        <thead>
+            <th class="text-center">Name</th>
+            <th class="text-center">Type</th>
+        </thead>
+        <tbody *ngFor="let inventory of request.inventories">
+            <td class="text-center">{{inventory.name}}</td>
+            <td class="text-center">{{inventory.type}}</td>
+        </tbody>
+        <button class="btn btn-warning" (click)="back()">back</button>
+    </table>
+</div>

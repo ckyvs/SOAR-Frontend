@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<!-- <div class="alert alert-warning" *ngIf="error != null && error.status == 0">{{error.statusText}}</div> -->
+<!-- <div class="alert alert-warning" *ngIf="error != null && error.status != 0">{{error.error.error}}</div> -->
+<div class="container mt-5">
+    <h3 class="text-center">Inventory Items</h3>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th class="text-center">Image</th>
+                <th class="text-center">Name</th>
+                <th class="text-center" width="40%">Available</th>
+                <th class="text-center" width="15%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inventory of inventories">
+                <td class="text-center">
+                    <img [src]="inventory.image">
+                </td>
+                <td class="text-center">{{inventory.name}}</td>
+                <td class="text-center">{{inventory.isAvailable}}</td>
+                <td class="text-center">
+                    <button class='btn' class="btn btn-success"
+                        *ngIf="inventory.isAvailable == 'Available' && inventory.requested == false && inventory.inCart == false && inventory.sameTypeInCart == false"
+                        (click)="add(inventory)">Add to Cart</button>
+                    <button class='btn btn-muted' *ngIf="inventory.isAvailable == 'Available' && inventory.inCart == false && inventory.sameTypeInCart == true" [disabled]="true">Same type in Cart</button>
+                <button class='btn' class="btn btn-warning" *ngIf="inventory.inCart && inventory.inCart == true"
+                    (click)="remove(inventory)">Remove</button>
+                <button class='btn btn-muted' *ngIf="inventory.isAvailable == 'Not Available '" [disabled]="true">Not
+                    Available</button>
+                    <button class='btn btn-muted' *ngIf="inventory.requested == true" [disabled]="true">Already Requested</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

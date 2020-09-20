@@ -1,0 +1,13 @@
+<app-menu *ngIf="emp == null; else devBlock"></app-menu>
+<ng-template #devBlock>
+    <app-dev-menu *ngIf='emp.role === "DEVELOPER"; else empAdmnBlock'></app-dev-menu>
+</ng-template>
+<ng-template #manBlock>
+    <app-emp-admin-menu #empAdmnBlock *ngIf="emp.role == 'MANAGER'; else manBlock"></app-emp-admin-menu>
+</ng-template>
+<ng-template #empAdmnBlock>
+    <app-manager-menu #manBlock *ngIf="emp.role == 'EMPLOYEE_ADMIN'; else infAdmnBlock"></app-manager-menu>
+</ng-template>
+<ng-template #infAdmnBlock>
+    <app-infra-admin-menu #infAdmnBlock *ngIf="emp.role == 'INFRA_ADMIN'"></app-infra-admin-menu>
+</ng-template>

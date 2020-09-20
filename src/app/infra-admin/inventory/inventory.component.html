@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+<div class="container" *ngIf="inventory">
+    <form class="was-validated mt-3" (submit)="!form.invalid && addInventory()" name="form" #form="ngForm">
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input class="form-control" type="text" id="Name" name="name" [(ngModel)]="inventory.name"
+                required="required" />
+        </div>
+        <div class="form-group">
+            <label for="Type">Type:</label>
+            <select class="form-control" id="Type" name="type" [(ngModel)]="inventory.type" required>
+                <option selected>Laptop</option>
+                <option>Desktop</option>
+                <option>Connecting Cables</option>
+                <option>Keyboard</option>
+                <option>Mouse</option>
+                <option>Docking Port</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Cost">Cost:</label>
+            <input class="form-control" type="number" min="0" id="Cost" name="Cost" max="999999" [(ngModel)]="inventory.cost"
+                required="required" />
+        </div>
+        <div class="form-group">
+            <label for="ItemsInStock">Items In Stock:</label>
+            <input class="form-control" type="number" min="0" id="ItemsInStock" name="itemsInStock"
+                [(ngModel)]="inventory.itemsInStock" required="required" />
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>

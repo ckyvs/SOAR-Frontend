@@ -1,0 +1,30 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": "test",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "Local",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "SOAR",
+            "database": "soar",
+            "username": "root",
+            "password": "toor"
+        }
+    ]
+}

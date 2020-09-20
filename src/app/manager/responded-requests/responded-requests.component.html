@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+<div class="container mt-5">
+    <h3 class="text-center">Past Requests</h3>
+    <div class="text-center" *ngIf="pastRequests && pastRequests.length==0">
+        No Requests Responded
+    </div>
+    <table class="table mt-3" *ngIf="pastRequests && pastRequests.length>0">
+    <thead>
+        <tr>
+            <th class="text-center">id</th>
+            <th class="text-center">Name</th>
+            <th class="text-center" width="15%">Created Date</th>
+            <th class="text-center" width="15%">Responded Date</th>
+            <th class="text-center" width="15%">Status</th>
+            <th class="text-center" width="15%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of pastRequests; index as i">
+            <td class="text-center">{{i+1}}</td>
+            <td class="text-center">Request {{request.id}}</td>
+            <td class="text-center">{{request.createdDate | date}}</td>
+            <td class="text-center">{{request.responseDate | date}}</td>
+            <td class="text-center">{{request.status}}</td>
+            <td class="text-center">
+                <button class="btn btn-success" (click)="view(request)">
+                    view
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

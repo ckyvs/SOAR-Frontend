@@ -1,0 +1,17 @@
+<header *ngIf="emp == null; else devBlock">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #000000;">
+        <a class="navbar-brand" href="/">SOAR</a>
+    </nav>
+</header>
+<ng-template #devBlock>
+    <app-dev-menu *ngIf='emp.role === "DEVELOPER"; else empAdmnBlock'></app-dev-menu>
+</ng-template>
+<ng-template #empAdmnBlock>
+    <app-emp-admin-menu #empAdmnBlock *ngIf="emp.role == 'EMPLOYEE_ADMIN'; else ManBlock"></app-emp-admin-menu>
+</ng-template>
+<ng-template #ManBlock>
+    <app-manager-menu #ManBlock *ngIf="emp.role == 'MANAGER'; else infAdmnBlock"></app-manager-menu>
+</ng-template>
+<ng-template #infAdmnBlock>
+    <app-infra-admin-menu #infAdmnBlock *ngIf="emp.role == 'INFRA_ADMIN'"></app-infra-admin-menu>
+</ng-template>

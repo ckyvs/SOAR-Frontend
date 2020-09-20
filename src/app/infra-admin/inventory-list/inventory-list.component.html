@@ -1,0 +1,35 @@
+<app-home></app-home>
+<div class="container mt-5" *ngIf="inventories">
+    <h3>Inventories</h3>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th class="text-center">id</th>
+            <th class="text center">Image</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Cost</th>
+            <th class="text-center">Items in stock</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inventory of inventories">
+            <td class="text-center">{{inventory.id}}</td>
+            <td class="text-center">
+                <img [src]="inventory.image">
+            </td>
+            <td class="text-center">{{inventory.name}}</td>
+            <td class="text-center">{{inventory.type}}</td>
+            <td class="text-center">{{inventory.cost}}</td>
+            <td class="text-center">{{inventory.itemsInStock}}</td>
+            <td class="text-center">
+                <button class="btn btn-success" (click)="view(inventory.id)">
+                    Edit
+                </button>
+            </td>
+        </tr>
+        <button class="btn btn-success " (click)="addinventory()">Add inventory</button>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+<div class="container mt-5" *ngIf="employees">
+    <h3>Employees</h3>
+    <div class="alert alert-warning" *ngIf="deleted">User Deleted</div>
+<table *ngIf="employees" class="table mt-3">
+    <thead>
+        <tr>
+            <th class="text-center">id</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Role</th>
+            <th class="text-center"></th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td class="text-center">{{employee.id}}</td>
+            <td class="text-center">{{employee.name}}</td>
+            <td class="text-center">{{employee.email}}</td>
+            <td class="text-center">{{employee.role}}</td>
+            <td class="text-center">
+                <button class="btn btn-success" (click)="view(employee.id)">
+                    Edit
+                </button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-warning" *ngIf="!self(employee.email)" (click)="delete(employee.id)">
+                    Delete
+                </button>
+                <button class="btn btn-muted" *ngIf="self(employee.email)">
+                    Can't Delete Self
+                </button>
+            </td>
+        </tr>
+        <button class="btn btn-success " (click)="addEmployee()">Add Employee</button>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div class="container mt-3" *ngIf="request && request.inventories">
+    <h3 class="text-center">Request {{id}}</h3>
+    <table class="table mt-3">
+        <thead>
+            <th class="text-center">Name</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Cost</th>
+        </thead>
+        <tbody *ngFor="let inventory of request.inventories">
+            <td class="text-center">{{inventory.name}}</td>
+            <td class="text-center">{{inventory.type}}</td>
+            <td class="text-center">{{inventory.cost}}</td>
+        </tbody>
+    </table>
+    <h4 class="text-center">Developer Remarks:</h4>
+    <div class="text-center">{{request.devRemarks}}</div><br>
+    <div *ngIf="request && request.inventories.length>0 && request.status != 'PENDING'">
+        Remarks<br>
+        <input type="text" class="form-control" [(ngModel)]="remarks" /><br><br>
+        <button class="btn btn-warning" (click)="back()">back</button>
+        <button class="btn btn-danger float-right" (click)="reject(request.id)">Reject</button>
+        <button class="btn btn-success float-right mr-3" (click)="approve(request.id)">Approve</button>
+    </div>
+</div>
