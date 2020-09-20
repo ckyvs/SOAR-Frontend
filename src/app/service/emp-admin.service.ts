@@ -10,22 +10,22 @@ export class EmpAdminService {
   constructor(private http:HttpClient) { }
 
   getAllEmployees() {
-    return this.http.get<employee[]>("http://localhost:8080/employee-admin");
+    return this.http.get<employee[]>("http://localhost:8080/api/employee-admin");
   }
 
   getEmployeeById(id) {
-    return this.http.get<employee>(`http://localhost:8080/employee/${id}`);
+    return this.http.get<employee>(`http://localhost:8080/api/employee/${id}`);
   }
 
   addEmployee(employee) {
-    return this.http.post("http://localhost:8080/employee", employee);
+    return this.http.post("http://localhost:8080/api/employee", employee);
   }
 
   updateEmployee(employee) {
-    return this.http.put(`http://localhost:8080/employee/${employee.id}`, employee);
+    return this.http.put(`http://localhost:8080/api/employee/${employee.id}`, employee);
   }
 
   deleteEmployee(id) {
-    return this.http.delete(`http://localhost:8080/employee/${id}`);
+    return this.http.delete(`http://localhost:8080/api/employee/${id}`);
   }
 }

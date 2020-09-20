@@ -12,18 +12,18 @@ export class InfraAdminService {
   ) { }
 
   getAllInventories() {
-    return this.http.get<inventory[]>("http://localhost:8080/infra-admin");
+    return this.http.get<inventory[]>("http://localhost:8080/api/infra-admin");
   }
 
   getInventoryById(id) {
-    return this.http.get<inventory>(`http://localhost:8080/inventory/${id}`);
+    return this.http.get<inventory>(`http://localhost:8080/api/inventory/${id}`);
   }
 
   addInventory(inventory) {
-    return this.http.post("http://localhost:8080/add-inventory", inventory);
+    return this.http.post("http://localhost:8080/api/add-inventory", inventory);
   }
 
   updateInventory(inventory) {
-    return this.http.put(`http://localhost:8080/update-inventory/${inventory.id}`, inventory);
+    return this.http.put(`http://localhost:8080/api/update-inventory/${inventory.id}`, inventory);
   }
 }

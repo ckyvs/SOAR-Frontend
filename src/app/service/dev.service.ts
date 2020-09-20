@@ -90,19 +90,19 @@ export class DevService {
 
   removeFromCart(inventory) {
     inventory.inCart = false;
-    return this.http.post("http://localhost:8080/remove-cart", inventory.name);
+    return this.http.post("http://localhost:8080/api/remove-cart", inventory.name);
     //console.log(this.cart.inventories);
   }
 
   request(remarks) {
-    return this.http.post("http://localhost:8080/request", remarks);
+    return this.http.post("http://localhost:8080/api/request", remarks);
   }
 
   getPastRequests() {
-    return this.http.get<pastRequests[]>("http://localhost:8080/past-requests");
+    return this.http.get<pastRequests[]>("http://localhost:8080/api/past-requests");
   }
 
   getRequest(id) {
-    return this.http.get<pastRequests>(`http://localhost:8080/past-requests/${id}`);
+    return this.http.get<pastRequests>(`http://localhost:8080/api/past-requests/${id}`);
   }
 }

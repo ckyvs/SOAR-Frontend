@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   setUser() {
-    return this.http.get<employee>("http://localhost:8080/profile");
+    return this.http.get<employee>("http://localhost:8080/api/profile");
   }
   // authenticate(username, password) {
   //   if(username === 'developer' && password == 'password') {

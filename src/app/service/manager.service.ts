@@ -11,22 +11,22 @@ export class ManagerService {
   constructor(private http:HttpClient) { }
 
   getPendingRequests() {
-    return this.http.get<pendingRequests[]>("http://localhost:8080/pending-requests");
+    return this.http.get<pendingRequests[]>("http://localhost:8080/api/pending-requests");
   }
 
   getPendingRequestbyId(id) {
-    return this.http.get<pendingRequests>(`http://localhost:8080/pending-requests/${id}`);
+    return this.http.get<pendingRequests>(`http://localhost:8080/api/pending-requests/${id}`);
   }
 
   getRespondedRequests() {
-    return this.http.get<respondedRequests[]>("http://localhost:8080/responded-requests");
+    return this.http.get<respondedRequests[]>("http://localhost:8080/api/responded-requests");
   }
 
   getRespondedRequestbyId(id) {
-    return this.http.get<respondedRequests>(`http://localhost:8080/responded-requests/${id}`);
+    return this.http.get<respondedRequests>(`http://localhost:8080/api/responded-requests/${id}`);
   }
 
   respondToRequest(id, response) {
-    return this.http.post(`http://localhost:8080/respond/${id}`, response);
+    return this.http.post(`http://localhost:8080/api/respond/${id}`, response);
   }
 }
