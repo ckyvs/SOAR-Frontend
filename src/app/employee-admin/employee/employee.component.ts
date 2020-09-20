@@ -12,6 +12,7 @@ export class EmployeeComponent implements OnInit {
 
   employee: employee;
   id: number;
+  emailExists:boolean;
 
   constructor(
     private router: Router,
@@ -21,6 +22,11 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.path.snapshot.params['id'];
+    this.emailExists=false;
+    this.refresh();
+  }
+
+  refresh() {
     if (this.id == -1) {
       this.employee = new employee;
     }
@@ -38,7 +44,11 @@ export class EmployeeComponent implements OnInit {
       this.empAdminService.addEmployee(this.employee).subscribe(
         res => {
           console.log(this.employee);
-          // this.router.navigate(['employees']);
+          this.router.navigate(['employees']);
+        },
+        err => {
+          this.emailExists=true;
+          this.employee.email='';
         }
       )
     }
@@ -48,6 +58,11 @@ export class EmployeeComponent implements OnInit {
       this.empAdminService.updateEmployee(this.employee).subscribe(
         res => {
           this.router.navigate(['employees']);
+        },
+        err => {
+          this.emailExists=true;
+          this.employee.email='';
+          this.employee.password = 'Def@ult1'
         }
       )
     }

@@ -6,7 +6,6 @@
     <table class="table mt-3">
         <thead>
             <tr>
-                <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
                 <th class="text-center" width="40%">Available</th>
                 <th class="text-center" width="15%"></th>
@@ -14,9 +13,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let inventory of inventories">
-                <td class="text-center">
-                    <img [src]="inventory.image">
-                </td>
                 <td class="text-center">{{inventory.name}}</td>
                 <td class="text-center">{{inventory.isAvailable}}</td>
                 <td class="text-center">

@@ -1,6 +1,7 @@
 <app-menu></app-menu>
 <div class="container" *ngIf="employee ">
     <form class="was-validated mt-3" (submit)="!form.invalid && addEmployee()" name="form" #form="ngForm">
+        <div class="alert alert-warning" *ngIf="emailExists">Email already registered with another user</div>
         <div class="form-group">
         <label for="Name">Name:</label>
         <input class="form-control" type="text" id="Name" name="name" [(ngModel)]="employee.name" required="required" />

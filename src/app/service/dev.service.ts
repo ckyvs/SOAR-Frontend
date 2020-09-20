@@ -17,13 +17,13 @@ export class DevService {
   cart : cart;
 
   getInventoryItems() {
-    return this.http.get<inventory[]>("http://localhost:8080/get-inventory");
+    return this.http.get<inventory[]>("http://localhost:8080/api/get-inventory");
   }
 
   getInventoryViewItems() {
      return forkJoin([
        this.getInventoryItems(),
-       this.http.get<cart_backend>("http://localhost:8080/cart"),
+       this.http.get<cart_backend>("http://localhost:8080/api/cart"),
        this.getPastRequests()
      ]).pipe(
        map(([inventory_items, cart_items, requested_items]) => {
@@ -78,13 +78,13 @@ export class DevService {
   }
 
   getCart() {
-    return this.http.get<cart>("http://localhost:8080/cart");
+    return this.http.get<cart>("http://localhost:8080/api/cart");
     //return this.cart;
   }
 
   addToCart(inventory) {
     inventory.inCart = true;
-    return this.http.post("http://localhost:8080/add-cart", inventory.name);
+    return this.http.post("http://localhost:8080/api/add-cart", inventory.name);
     //console.log(this.cart.inventories);
   }
 

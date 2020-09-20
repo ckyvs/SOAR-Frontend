@@ -11,6 +11,7 @@ import { SelfService } from '../service/self.service';
 export class ProfileComponent implements OnInit {
 
   self: self;
+  emailExists:boolean;
 
   constructor(
     private router: Router,
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.emailExists=false;
     this.selfService.getSelf().subscribe(
       res => {
         this.self = res;
@@ -31,6 +33,11 @@ export class ProfileComponent implements OnInit {
     this.selfService.updateSelf(this.self).subscribe(
       res => {
         this.router.navigate(['']);
+      },
+      err => {
+        this.emailExists=true;
+        this.self.email=''
+        this.self.password = 'Def@ult1'
       }
     )
   }
