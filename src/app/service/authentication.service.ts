@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { employee } from '../Entities/employee';
 import { response } from '../Entities/response';
+import { BaseURLService } from './base-url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthenticationService {
   emp:employee;
   error;
   constructor(private http:HttpClient,
-    private router:Router
+    private router:Router,
+    private baseUrl:BaseURLService
     )
     {
 
@@ -24,11 +26,11 @@ export class AuthenticationService {
       'username':username,
       'password':password
     }
-    return this.http.post<response>("http://localhost:8080/authenticate", user)
+    return this.http.post<response>(this.baseUrl.BASE_URL+"/authenticate", user)
   }
 
   setUser() {
-    return this.http.get<employee>("http://localhost:8080/api/profile");
+    return this.http.get<employee>(this.baseUrl.BASE_URL+"/profile");
   }
   // authenticate(username, password) {
   //   if(username === 'developer' && password == 'password') {

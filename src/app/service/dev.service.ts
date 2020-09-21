@@ -6,24 +6,26 @@ import { cart_backend } from '../Entities/cart_backend';
 import { cart } from '../Entities/dev/cart';
 import { inventory } from '../Entities/dev/inventory';
 import { pastRequests } from '../Entities/dev/past-requests';
+import { BaseURLService } from './base-url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+    private baseUrl:BaseURLService) { }
   inventories : inventory[];
   cart : cart;
 
   getInventoryItems() {
-    return this.http.get<inventory[]>("http://localhost:8080/api/get-inventory");
+    return this.http.get<inventory[]>(this.baseUrl.BASE_URL+"/get-inventory");
   }
 
   getInventoryViewItems() {
      return forkJoin([
        this.getInventoryItems(),
-       this.http.get<cart_backend>("http://localhost:8080/api/cart"),
+       this.http.get<cart_backend>(this.baseUrl.BASE_URL+"/cart"),
        this.getPastRequests()
      ]).pipe(
        map(([inventory_items, cart_items, requested_items]) => {
@@ -78,28 +80,28 @@ export class DevService {
   }
 
   getCart() {
-    return this.http.get<cart>("http://localhost:8080/api/cart");
+    return this.http.get<cart>(this.baseUrl.BASE_URL+"/cart");
     //return this.cart;
   }
 
   addToCart(inventory) {
     inventory.inCart = true;
-    return this.http.post("http://localhost:8080/api/add-cart", inventory.name);
+    return this.http.post(this.baseUrl.BASE_URL+"/add-cart", inventory.name);
     //console.log(this.cart.inventories);
   }
 
   removeFromCart(inventory) {
     inventory.inCart = false;
-    return this.http.post("http://localhost:8080/api/remove-cart", inventory.name);
+    return this.http.post(this.baseUrl.BASE_URL+"/remove-cart", inventory.name);
     //console.log(this.cart.inventories);
   }
 
   request(remarks) {
-    return this.http.post("http://localhost:8080/api/request", remarks);
+    return this.http.post(this.baseUrl.BASE_URL+"/request", remarks);
   }
 
   getPastRequests() {
-    return this.http.get<pastRequests[]>("http://localhost:8080/api/past-requests");
+    return this.http.get<pastRequests[]>(this.baseUrl.BASE_URL+"/past-requests");
   }
 
   getRequest(id) {
