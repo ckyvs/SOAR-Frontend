@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { inventory } from '../Entities/infra-admin/inventory';
+import { BaseURLService } from './base-url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +9,23 @@ import { inventory } from '../Entities/infra-admin/inventory';
 export class InfraAdminService {
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private baseUrl:BaseURLService
   ) { }
 
   getAllInventories() {
-    return this.http.get<inventory[]>("http://localhost:8080/api/infra-admin");
+    return this.http.get<inventory[]>(this.baseUrl.BASE_URL+"/infra-admin");
   }
 
   getInventoryById(id) {
-    return this.http.get<inventory>(`http://localhost:8080/api/inventory/${id}`);
+    return this.http.get<inventory>(this.baseUrl.BASE_URL+`/inventory/${id}`);
   }
 
   addInventory(inventory) {
-    return this.http.post("http://localhost:8080/api/add-inventory", inventory);
+    return this.http.post(this.baseUrl.BASE_URL+"/add-inventory", inventory);
   }
 
   updateInventory(inventory) {
-    return this.http.put(`http://localhost:8080/api/update-inventory/${inventory.id}`, inventory);
+    return this.http.put(this.baseUrl.BASE_URL+`/update-inventory/${inventory.id}`, inventory);
   }
 }
